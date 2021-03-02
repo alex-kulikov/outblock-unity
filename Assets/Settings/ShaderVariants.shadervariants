@@ -1,0 +1,286 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!200 &20000000
+ShaderVariantCollection:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: ShaderVariants
+  m_Shaders:
+  - first: {fileID: 10770, guid: 0000000000000000f000000000000000, type: 0}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+      - keywords: UNITY_UI_ALPHACLIP
+        passType: 0
+  - first: {fileID: 4800000, guid: 65df88701913c224d95fc554db28381a, type: 3}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 4800000, guid: 1edcd131364091c46a17cbff0b1de97a, type: 3}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 4800000, guid: 5ec81c81908db34429b4f6ddecadd3bd, type: 3}
+    second:
+      variants:
+      - keywords: 
+        passType: 8
+      - keywords: 
+        passType: 13
+  - first: {fileID: 4800000, guid: c17132b1f77d20942aa75f8429c0f8bc, type: 3}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: -6465566751694194690, guid: 33ed973247d06ab4692eed70972cfe58,
+      type: 3}
+    second:
+      variants:
+      - keywords: 
+        passType: 8
+      - keywords: BILLBOARD_FACE_CAMERA_POS UNITY_HDR_ON _MAIN_LIGHT_SHADOWS _MAIN_LIGHT_SHADOWS_CASCADE
+          _SHADOWS_SOFT
+        passType: 13
+      - keywords: BILLBOARD_FACE_CAMERA_POS LIGHTPROBE_SH UNITY_HDR_ON _MAIN_LIGHT_SHADOWS
+          _MAIN_LIGHT_SHADOWS_CASCADE _SHADOWS_SOFT
+        passType: 13
+      - keywords: BILLBOARD_FACE_CAMERA_POS _DEPTH_NO_MSAA _MAIN_LIGHT_SHADOWS _MAIN_LIGHT_SHADOWS_CASCADE
+          _SHADOWS_SOFT
+        passType: 13
+      - keywords: BILLBOARD_FACE_CAMERA_POS LIGHTPROBE_SH _DEPTH_NO_MSAA _MAIN_LIGHT_SHADOWS
+          _MAIN_LIGHT_SHADOWS_CASCADE _SHADOWS_SOFT
+        passType: 13
+      - keywords: BILLBOARD_FACE_CAMERA_POS UNITY_HDR_ON _DEPTH_NO_MSAA _MAIN_LIGHT_SHADOWS
+          _MAIN_LIGHT_SHADOWS_CASCADE _SHADOWS_SOFT
+        passType: 13
+      - keywords: BILLBOARD_FACE_CAMERA_POS LIGHTPROBE_SH UNITY_HDR_ON _DEPTH_NO_MSAA
+          _MAIN_LIGHT_SHADOWS _MAIN_LIGHT_SHADOWS_CASCADE _SHADOWS_SOFT
+        passType: 13
+  - first: {fileID: 4800000, guid: 650dd9526735d5b46b79224bc6e94025, type: 3}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+      - keywords: INSTANCING_ON
+        passType: 0
+      - keywords: 
+        passType: 11
+      - keywords: 
+        passType: 13
+  - first: {fileID: 4800000, guid: 29868e73b638e48ca99a19ea58c48d90, type: 3}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+      - keywords: 
+        passType: 13
+  - first: {fileID: 4800000, guid: 933532a4fcc9baf4fa0491de14d08ed7, type: 3}
+    second:
+      variants:
+      - keywords: 
+        passType: 8
+      - keywords: _ALPHATEST_ON
+        passType: 8
+      - keywords: 
+        passType: 11
+      - keywords: 
+        passType: 13
+      - keywords: _MAIN_LIGHT_SHADOWS _MAIN_LIGHT_SHADOWS_CASCADE _SHADOWS_SOFT
+        passType: 13
+      - keywords: _EMISSION _MAIN_LIGHT_SHADOWS _MAIN_LIGHT_SHADOWS_CASCADE _SHADOWS_SOFT
+        passType: 13
+      - keywords: _ADDITIONAL_LIGHTS
+        passType: 13
+      - keywords: _MAIN_LIGHT_SHADOWS _MAIN_LIGHT_SHADOWS_CASCADE _NORMALMAP _SHADOWS_SOFT
+        passType: 13
+      - keywords: _ADDITIONAL_LIGHTS _NORMALMAP
+        passType: 13
+      - keywords: _ALPHATEST_ON
+        passType: 13
+      - keywords: _MAIN_LIGHT_SHADOWS _MAIN_LIGHT_SHADOWS_CASCADE _SHADOWS_SOFT _SPECULAR_SETUP
+        passType: 13
+      - keywords: _ALPHATEST_ON _ENVIRONMENTREFLECTIONS_OFF _MAIN_LIGHT_SHADOWS _MAIN_LIGHT_SHADOWS_CASCADE
+          _SHADOWS_SOFT _SPECULAR_SETUP
+        passType: 13
+      - keywords: _ADDITIONAL_LIGHTS _ALPHATEST_ON _ENVIRONMENTREFLECTIONS_OFF _SPECULAR_SETUP
+        passType: 13
+      - keywords: _EMISSION _MAIN_LIGHT_SHADOWS _MAIN_LIGHT_SHADOWS_CASCADE _RECEIVE_SHADOWS_OFF
+          _SHADOWS_SOFT
+        passType: 13
+  - first: {fileID: 4800000, guid: 0f854b35a0cf61a429bd5dcfea30eddd, type: 3}
+    second:
+      variants:
+      - keywords: _MAIN_LIGHT_SHADOWS
+        passType: 0
+  - first: {fileID: 4800000, guid: 8516d7a69675844a7a0b7095af7c46af, type: 3}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+      - keywords: 
+        passType: 13
+      - keywords: _MAIN_LIGHT_SHADOWS _MAIN_LIGHT_SHADOWS_CASCADE _RECEIVE_SHADOWS_OFF
+          _SHADOWS_SOFT
+        passType: 13
+  - first: {fileID: 4800000, guid: f6783ab646d374f94b199774402a5144, type: 3}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+      - keywords: 
+        passType: 11
+      - keywords: 
+        passType: 13
+  - first: {fileID: 4800000, guid: 5e7134d6e63e0bc47a1dd2669cedb379, type: 3}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 4800000, guid: ec9fec698a3456d4fb18cf8bacb7a2bc, type: 3}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 4800000, guid: 69c1f799e772cb6438f56c23efccb782, type: 3}
+    second:
+      variants:
+      - keywords: 
+        passType: 8
+      - keywords: 
+        passType: 13
+  - first: {fileID: 4800000, guid: 8fbe92a9edfe6074e841d6dd1509bc59, type: 3}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 4800000, guid: 0f4122b9a743b744abe2fb6a0a88868b, type: 3}
+    second:
+      variants:
+      - keywords: GEOM_TYPE_BRANCH
+        passType: 8
+      - keywords: GEOM_TYPE_BRANCH LOD_FADE_PERCENTAGE
+        passType: 8
+      - keywords: GEOM_TYPE_BRANCH
+        passType: 13
+      - keywords: GEOM_TYPE_BRANCH LOD_FADE_PERCENTAGE
+        passType: 13
+  - first: {fileID: 4800000, guid: 04c410c9937594faa893a11dceb85f7e, type: 3}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 4800000, guid: 0406db5a14f94604a8c57ccfbc9f3b46, type: 3}
+    second:
+      variants:
+      - keywords: _COLOROVERLAY_ON _EMISSION
+        passType: 0
+  - first: {fileID: 4800000, guid: e7857e9d0c934dc4f83f270f8447b006, type: 3}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+      - keywords: _BLOOM_LQ _CHROMATIC_ABERRATION _TONEMAP_ACES
+        passType: 0
+      - keywords: _BLOOM_LQ _CHROMATIC_ABERRATION _FILM_GRAIN _TONEMAP_ACES
+        passType: 0
+  - first: {fileID: 4800000, guid: 5f1864addb451f54bae8c86d230f736e, type: 3}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 4800000, guid: 2aed67ad60045d54ba3a00c91e2d2631, type: 3}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 4800000, guid: c49e63ed1bbcb334780a3bd19dfed403, type: 3}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+      - keywords: _DITHERING _FILM_GRAIN _FXAA
+        passType: 0
+  - first: {fileID: 4800000, guid: d6dae50ee9e1bfa4db75f19f99355220, type: 3}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 4800000, guid: 63eaba0ebfb82cc43bde059b4a8c65f6, type: 3}
+    second:
+      variants:
+      - keywords: _SMAA_PRESET_LOW
+        passType: 0
+  - first: {fileID: 4800000, guid: 1121bb4e615ca3c48b214e79e841e823, type: 3}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 4800000, guid: fe393ace9b354375a9cb14cdbbc28be4, type: 3}
+    second:
+      variants:
+      - keywords: BILLBOARD_FACE_CAMERA_POS LIGHTPROBE_SH UNITY_HDR_ON _MAIN_LIGHT_SHADOWS
+          _MAIN_LIGHT_SHADOWS_CASCADE _SHADOWS_SOFT
+        passType: 0
+      - keywords: BILLBOARD_FACE_CAMERA_POS LIGHTPROBE_SH _DEPTH_NO_MSAA _MAIN_LIGHT_SHADOWS
+          _MAIN_LIGHT_SHADOWS_CASCADE _SHADOWS_SOFT
+        passType: 0
+      - keywords: BILLBOARD_FACE_CAMERA_POS LIGHTPROBE_SH UNITY_HDR_ON _DEPTH_NO_MSAA
+          _MAIN_LIGHT_SHADOWS _MAIN_LIGHT_SHADOWS_CASCADE _SHADOWS_SOFT
+        passType: 0
+      - keywords: BILLBOARD_FACE_CAMERA_POS LIGHTPROBE_SH UNITY_HDR_ON _ADDITIONAL_LIGHTS
+          _DEPTH_NO_MSAA
+        passType: 0
+  - first: {fileID: 4800000, guid: e507fdfead5ca47e8b9a768b51c291a1, type: 3}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+      - keywords: 
+        passType: 13
+  - first: {fileID: 4800000, guid: 0a7e590f3cf1d4ee8a8fab5b6eff09ef, type: 3}
+    second:
+      variants:
+      - keywords: 
+        passType: 13
+  - first: {fileID: 4800000, guid: 99134b1f0c27d54469a840832a28fadf, type: 3}
+    second:
+      variants:
+      - keywords: _WINDQUALITY_NONE
+        passType: 8
+      - keywords: LOD_FADE_PERCENTAGE _WINDQUALITY_NONE
+        passType: 8
+      - keywords: _WINDQUALITY_NONE
+        passType: 13
+      - keywords: LOD_FADE_PERCENTAGE _WINDQUALITY_NONE
+        passType: 13
+  - first: {fileID: -6465566751694194690, guid: 7f96683f37c533a4ca8adf5bcd8a141b,
+      type: 3}
+    second:
+      variants:
+      - keywords: _NORMALMAP
+        passType: 8
+      - keywords: BILLBOARD_FACE_CAMERA_POS UNITY_HDR_ON _MAIN_LIGHT_SHADOWS _MAIN_LIGHT_SHADOWS_CASCADE
+          _NORMALMAP _SHADOWS_SOFT
+        passType: 13
+      - keywords: BILLBOARD_FACE_CAMERA_POS LIGHTPROBE_SH UNITY_HDR_ON _MAIN_LIGHT_SHADOWS
+          _MAIN_LIGHT_SHADOWS_CASCADE _NORMALMAP _SHADOWS_SOFT
+        passType: 13
+      - keywords: BILLBOARD_FACE_CAMERA_POS _DEPTH_NO_MSAA _MAIN_LIGHT_SHADOWS _MAIN_LIGHT_SHADOWS_CASCADE
+          _NORMALMAP _SHADOWS_SOFT
+        passType: 13
+      - keywords: BILLBOARD_FACE_CAMERA_POS UNITY_HDR_ON _DEPTH_NO_MSAA _MAIN_LIGHT_SHADOWS
+          _MAIN_LIGHT_SHADOWS_CASCADE _NORMALMAP _SHADOWS_SOFT
+        passType: 13
+      - keywords: BILLBOARD_FACE_CAMERA_POS LIGHTPROBE_SH UNITY_HDR_ON _DEPTH_NO_MSAA
+          _MAIN_LIGHT_SHADOWS _MAIN_LIGHT_SHADOWS_CASCADE _NORMALMAP _SHADOWS_SOFT
+        passType: 13
+  - first: {fileID: 4800000, guid: a15b78cf8ca26ca4fb2090293153c62c, type: 3}
+    second:
+      variants:
+      - keywords: _GENERIC
+        passType: 0

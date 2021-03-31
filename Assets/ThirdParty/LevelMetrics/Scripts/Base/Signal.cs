@@ -31,7 +31,7 @@ namespace Denver.Metrics
                 set
                 {
                     lookUpObject = value;
-                    UpdateObjectName();
+                    ObjectName = lookUpObject != null ? lookUpObject.name : "";
                 }
             }
             [SerializeField]
@@ -84,14 +84,9 @@ namespace Denver.Metrics
                 this.gizmoType = gizmoType;
             }
 
-            private void UpdateObjectName()
-            {
-                ObjectName = lookUpObject != null ? lookUpObject.name : "";
-            }
-
             public void Init()
             {
-                UpdateObjectName();
+                ObjectName = lookUpObject != null ? lookUpObject.name : "";
             }
 
         }

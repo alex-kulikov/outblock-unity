@@ -249,9 +249,9 @@ namespace OutBlock
             if (items.Count >= count)
             {
                 GameUI.Instance().ShowMessage(string.Format(items[0].ConsumeMessage, count, items[0].GetFullName()));
-                foreach(Item element in items)
+                for (int i = 0; i < count; i++)
                 {
-                    this.items.Remove(element);
+                    this.items.Remove(items[i]);
                 }
                 UpdateInventoryDisplay();
                 return true;

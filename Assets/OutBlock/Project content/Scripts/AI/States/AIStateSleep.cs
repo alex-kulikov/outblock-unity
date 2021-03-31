@@ -24,6 +24,11 @@ namespace OutBlock
         public float Multiplier { get; set; } = 1;
 
         /// <summary>
+        /// Should the entity switch to the attention state as it wakes?
+        /// </summary>
+        public bool AttentionOnAwake { get; set; } = false;
+
+        /// <summary>
         /// Range from 0 to 1. Represents time before the entity will wake up. 0 - wake up, 1 - sleeping
         /// </summary>
         public float TimerRatio => entity.Data.sleepTimer / maxTime;
@@ -31,7 +36,8 @@ namespace OutBlock
         private void WakeUp()
         {
             controller?.Relax();
-            entity.assignedZone.Attention(entity.transform.position);
+            if (AttentionOnAwake)
+                entity.assignedZone.Attention(entity.transform.position);
             End();
         }
 

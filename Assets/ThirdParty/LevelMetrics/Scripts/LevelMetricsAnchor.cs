@@ -78,8 +78,8 @@ namespace Denver.Metrics
             foreach (Signal.Config signal in signals)
                 signal.Record = true;
         }
-
-        public void SendSignal(string name)
+		
+		public void SendSignal(string name)
         {
             Signal.Config signal = signals.FirstOrDefault(x => x.Name == name);
             if (signal != null)

@@ -215,7 +215,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 0
-    m_SensorSize: {x: 1.7797312, y: 1}
+    m_SensorSize: {x: 1.7791077, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -6053,7 +6053,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5eaa1a91cb19fd4db9d69cb19014193, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterComponent: {fileID: 0}
+  characterComponent: {fileID: 8996782536687194963}
   input: {fileID: 8996782536687194966}
   cam: {fileID: 8996782536229947936}
   characterAnimator: {fileID: 8012022471666672570}

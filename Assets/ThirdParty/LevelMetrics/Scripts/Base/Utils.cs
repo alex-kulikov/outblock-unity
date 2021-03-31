@@ -7,6 +7,7 @@ namespace Denver.Metrics
 {
     public static partial class Utils
     {
+
         /// <summary>
         /// Converts float time value to the correct time string - minutes:seconds
         /// </summary>
@@ -111,6 +112,14 @@ namespace Denver.Metrics
             }
         }
 
+        private static void DrawPathSector(ref List<Vector3> points, int index)
+        {
+            Gizmos.DrawWireCube(points[index], Vector3.one * 0.1f);
+
+            if (index < points.Count - 1)
+                Gizmos.DrawLine(points[index], points[index + 1]);
+        }
+
         /// <summary>
         /// Draws path with specified color.
         /// </summary>
@@ -120,12 +129,26 @@ namespace Denver.Metrics
 
             for (int i = 0; i < points.Count; i++)
             {
-                Gizmos.DrawWireSphere(points[i], 0.1f);
+                DrawPathSector(ref points, i);
+            }
+        }
 
-                if (i >= points.Count - 1)
+        /// <summary>
+        /// Draws path with specified color and camera check.
+        /// </summary>
+        public static void DrawPathCheck(List<Vector3> points, Color color, Plane[] planes)
+        {
+            Gizmos.color = color;
+            Bounds testBound = new Bounds(Vector3.zero, Vector3.one * 0.05f);
+
+            for (int i = 0; i < points.Count; i++)
+            {
+                testBound.center = points[i];
+
+                if (!GeometryUtility.TestPlanesAABB(planes, testBound))
                     continue;
 
-                Gizmos.DrawLine(points[i], points[i + 1]);
+                DrawPathSector(ref points, i);
             }
         }
 

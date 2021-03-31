@@ -20,6 +20,11 @@ namespace OutBlock
         {
 
             /// <summary>
+            /// Camera horizontal angle.
+            /// </summary>
+            public float AimX { get; private set; }
+
+            /// <summary>
             /// Weapon index.
             /// </summary>
             public int weaponIndex { get; private set; }
@@ -37,14 +42,15 @@ namespace OutBlock
             /// <summary>
             /// Weapon mags.
             /// </summary>
-            public int[] mags { get; private set; }
+            public int[] reservedAmmo { get; private set; }
 
-            public PlayerSaveData(int id, Vector3 pos, Vector3 rot, bool active, bool enabled, float hp, bool dead, int weaponIndex, List<Item> items, int[] ammos, int[] mags) : base(id, pos, rot, active, enabled, hp, dead)
+            public PlayerSaveData(int id, Vector3 pos, Vector3 rot, bool active, bool enabled, float hp, bool dead, float aimX, int weaponIndex, List<Item> items, int[] ammos, int[] reservedAmmo) : base(id, pos, rot, active, enabled, hp, dead)
             {
+                this.AimX = aimX;
                 this.weaponIndex = weaponIndex;
                 this.items = items;
                 this.ammos = ammos;
-                this.mags = mags;
+                this.reservedAmmo = reservedAmmo;
             }
         }
 
@@ -910,7 +916,7 @@ namespace OutBlock
 
             Dead = true;
 
-            deathSaveData = new PlayerSaveData(0, transform.position, transform.eulerAngles, gameObject.activeSelf, enabled, maxHp / 2, Dead, weaponIndex, inventory.GetItems(), inventory.GetAmmo(), inventory.GetReservedAmmo());
+            deathSaveData = new PlayerSaveData(0, transform.position, transform.eulerAngles, gameObject.activeSelf, enabled, maxHp / 2, Dead, input.AimX, weaponIndex, inventory.GetItems(), inventory.GetAmmo(), inventory.GetReservedAmmo());
             GameUI.Instance().HPBar.fillAmount = 0;
 
             Character.Active = false;
@@ -1028,7 +1034,7 @@ namespace OutBlock
             float hp = this.hp;
             if (!Dead && hp == 0)
                 hp = maxHp;
-            return new PlayerSaveData(Id, transform.position, transform.localEulerAngles, gameObject.activeSelf, enabled, hp, Dead, weaponIndex, inventory.GetItems(), inventory.GetAmmo(), inventory.GetReservedAmmo());
+            return new PlayerSaveData(Id, transform.position, transform.localEulerAngles, gameObject.activeSelf, enabled, hp, Dead, input.AimX, weaponIndex, inventory.GetItems(), inventory.GetAmmo(), inventory.GetReservedAmmo());
         }
 
         /// <inheritdoc/>
@@ -1050,8 +1056,10 @@ namespace OutBlock
                     Dead = playerSaveData.dead;
                 }
 
+                input.AimX = playerSaveData.AimX;
+
                 WeaponIndex = playerSaveData.weaponIndex;
-                inventory.SetAmmo(playerSaveData.ammos, playerSaveData.mags);
+                inventory.SetAmmo(playerSaveData.ammos, playerSaveData.reservedAmmo);
                 inventory.SetItems(playerSaveData.items);
             }
 

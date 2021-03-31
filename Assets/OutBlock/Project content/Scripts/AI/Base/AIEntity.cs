@@ -156,5 +156,13 @@ namespace OutBlock
 
         public AIZone assignedZone { get; set; }
 
+        /// <summary>
+        /// Checks if the entity can sleep.
+        /// </summary>
+        public bool CanSleep()
+        {
+            return !(data.SleepTimeRange.min == 0 && data.SleepTimeRange.max == 0);
+        }
+
     }
 }

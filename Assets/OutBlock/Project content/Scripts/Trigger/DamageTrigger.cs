@@ -26,7 +26,8 @@ namespace OutBlock
 
         private void Start()
         {
-            damage.force = transform.TransformDirection(damage.force);            
+            damage.force = transform.TransformDirection(damage.force);
+            damage.team = Teams.Both;
         }
 
         ///<inheritdoc/>

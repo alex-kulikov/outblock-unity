@@ -19,6 +19,9 @@ namespace Denver.Metrics
         /// Display gizmos?
         /// </summary>
         public bool Display => display;
+        [SerializeField]
+        private DisplaySettings displaySettings = new DisplaySettings();
+        public DisplaySettings DisplaySettings => displaySettings;
         [SerializeField, Tooltip("Data file for the signals.")]
         private TextAsset signalsFile = null;
         [SerializeField]
@@ -30,8 +33,11 @@ namespace Denver.Metrics
         private string comment = "";
         public string Comment => comment;
 
+        private Bounds testBound;
+
         public Dictionary<string, List<Signal.Runtime>> editorSignals { get; private set; } = new Dictionary<string, List<Signal.Runtime>>();
         public Dictionary<string, Recordable.Runtime> editorPaths { get; private set; } = new Dictionary<string, Recordable.Runtime>();
+        public Plane[] Planes { get; private set; }
 
         public delegate void OnFilesReread();
         public OnFilesReread onFilesReread;
@@ -58,11 +64,17 @@ namespace Denver.Metrics
             if (!display)
                 return;
 
+            if (displaySettings.Mode == DisplaySettings.Modes.ViewCheck)
+            {
+                Planes = GeometryUtility.CalculateFrustumPlanes(UnityEditor.SceneView.lastActiveSceneView.camera);
+                testBound = new Bounds(Vector3.zero, Vector3.one * 0.5f);
+            }
+
             if (editorSignals.Count > 0)
             {
                 foreach (KeyValuePair<string, List<Signal.Runtime>> pair in editorSignals)
                 {
-                    foreach(Signal.Runtime signal in pair.Value)
+                    foreach (Signal.Runtime signal in pair.Value)
                     {
                         if (!signal.treeElement.IsVisible())
                             continue;
@@ -70,7 +82,11 @@ namespace Denver.Metrics
                         foreach (Signal.Data data in signal.Data)
                         {
                             if (data.treeElement.IsVisible())
-                                Utils.DrawGizmo(data.pos, signal.gizmoColor, signal.gizmoType, signal.gizmoSize);
+                            {
+                                testBound.center = data.pos;
+                                if (displaySettings.Mode == DisplaySettings.Modes.Simple || GeometryUtility.TestPlanesAABB(Planes, testBound))
+                                    Utils.DrawGizmo(data.pos, signal.gizmoColor, signal.gizmoType, signal.gizmoSize);
+                            }
                         }
                     }
                 }
@@ -83,7 +99,9 @@ namespace Denver.Metrics
                     if (!pair.Value.treeElement.IsVisible())
                         continue;
 
-                    Utils.DrawPath(Recordable.Data.ToVector3(pair.Value.Data), pair.Value.gizmoColor);
+                    if (displaySettings.Mode == DisplaySettings.Modes.Simple)
+                        Utils.DrawPath(Recordable.Data.ToVector3(pair.Value.Data), pair.Value.gizmoColor);
+                    else Utils.DrawPathCheck(Recordable.Data.ToVector3(pair.Value.Data), pair.Value.gizmoColor, Planes);
                 }
             }
         }
@@ -113,8 +131,7 @@ namespace Denver.Metrics
                     if (line.Contains("SIGNAL"))
                     {
                         string[] signalInfo = Regex.Match(line, nameRegex).ToString().Trim('"').Split(':');
-                        string lineNext = line.Substring(line.LastIndexOf('"'));
-                        string[] displayInfo = Regex.Match(lineNext, parenthesesRegex).ToString().Trim('(', ')').Split(',');
+                        string[] displayInfo = Regex.Match(line, parenthesesRegex).ToString().Trim('(', ')').Split(',');
                         ColorUtility.TryParseHtmlString(displayInfo[0], out Color color);
                         currentSignal = new Signal.Runtime(signalInfo[1], signalInfo[0], 0, color, Utils.ReadFloat(displayInfo[1]), (GizmoTypes)int.Parse(displayInfo[2]));
                     }
@@ -183,8 +200,7 @@ namespace Denver.Metrics
                     if (line.Contains("PATH"))
                     {
                         string[] pathInfo = Regex.Match(line, nameRegex).ToString().Trim('"').Split(':');
-                        string lineNext = line.Substring(line.LastIndexOf('"'));
-                        string colorInfo = Regex.Match(lineNext, parenthesesRegex).ToString().Trim('(', ')');
+                        string colorInfo = Regex.Match(line, parenthesesRegex).ToString().Trim('(', ')');
                         ColorUtility.TryParseHtmlString(colorInfo, out Color color);
                         currentPath = new Recordable.Runtime(pathInfo[1], pathInfo[0], color);
                     }

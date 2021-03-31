@@ -145,7 +145,7 @@ namespace OutBlock
             hp = maxHP;
 
             //Create instances of states
-            idleState = new AIStateIdle();
+            idleState = new AIStateIdle(transform.forward);
             attentionState = new AIStateAttention();
             aggresionState = new AIStateAggresion();
             sleepState = new AIStateSleep();
@@ -505,12 +505,13 @@ namespace OutBlock
         /// Switch to the sleep state
         /// </summary>
         /// <param name="multiplier">Sleep time multiplier</param>
-        public void Sleep(float multiplier = 1)
+        public void Sleep(float multiplier = 1, bool attentionOnAwake = false)
         {
             if (GetState() is AIStateClimb)
                 ragdoll.EnableRagdoll(Vector3.zero, false);
 
             sleepState.Multiplier = multiplier;
+            sleepState.AttentionOnAwake = attentionOnAwake;
             SwitchState(sleepState);
         }
 
@@ -610,8 +611,8 @@ namespace OutBlock
 
             if (damageInfo.damageType == DamageInfo.DamageTypes.Sleep)
             {
-                if (data.currentState != sleepState)
-                    Sleep(headshot ? 2 : 1);
+                if (CanSleep() && data.currentState != sleepState)
+                    Sleep(headshot ? 2 : 1, damageInfo.team == Teams.Player);
             }
             else if (damageInfo.damageType == DamageInfo.DamageTypes.Force)
             {
@@ -723,7 +724,7 @@ namespace OutBlock
             float hp = this.hp;
             if (!Dead && hp == 0)
                 hp = maxHP;
-            return new EntitySaveData(Id, transform.position, transform.localEulerAngles, gameObject.activeSelf, enabled, hp, Dead, data.currentState ?? new AIStateIdle());
+            return new EntitySaveData(Id, transform.position, transform.localEulerAngles, gameObject.activeSelf, enabled, hp, Dead, data.currentState ?? new AIStateIdle(transform.forward));
         }
 
         /// <inheritdoc/>

@@ -15,9 +15,15 @@ namespace OutBlock
         private AIPath.PathNode targetPathNode;
         //Current path
         private AIPath patrolPath;
+        private Vector3 lastDir;
 
         ///<inheritdoc/>
         public override string DebugStatus => "";
+
+        public AIStateIdle(Vector3 initDir)
+        {
+            lastDir = initDir;
+        }
 
         //Switch to attention state if sound heared
         private void Sensors_OnHearSound(SoundStimuli obj)
@@ -110,6 +116,10 @@ namespace OutBlock
                 {
                     //Move to spawn point if no path
                     controller?.MoveTo(entity.Data.spawnPoint);
+                    if (Vector3.Distance(entity.transform.position, entity.Data.spawnPoint) < 0.75f)
+                    {
+                        controller?.RotateTo(lastDir);
+                    }
                 }
             }
 
@@ -134,6 +144,7 @@ namespace OutBlock
         public override void End()
         {
             base.End();
+            lastDir = entity.transform.forward;
             //Clear
             entity.Sensors.OnHearSound -= Sensors_OnHearSound;
         }

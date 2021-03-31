@@ -16,7 +16,7 @@ namespace Denver.Metrics
         [SerializeField, Header("Main")]
         private bool recording = true;
         [SerializeField, Tooltip("Show GUI with controls.")]
-        private bool showGUI = false;
+        private bool showGUI = true;
         [SerializeField, Tooltip("GUI position")]
         private GUIPositions guiPosition = GUIPositions.LeftTop;
         [SerializeField, Tooltip("Explicit GUI position")]

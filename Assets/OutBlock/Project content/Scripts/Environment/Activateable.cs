@@ -37,7 +37,7 @@ namespace OutBlock
             public ActivateableSaveData(int id, Vector3 pos, Vector3 rot, bool active, bool enabled, bool open, bool isActive, bool done) : base(id, pos, rot, active, enabled)
             {
                 this.open = open;
-                this.isActive = active;
+                this.isActive = isActive;
                 this.done = done;
             }
         }

@@ -27,7 +27,7 @@ namespace Denver.Metrics
                 set
                 {
                     objectToRecord = value;
-                    UpdateObjectName();
+                    ObjectName = objectToRecord != null ? objectToRecord.name : "";
                 }
             }
             [SerializeField]
@@ -142,7 +142,7 @@ namespace Denver.Metrics
 
             public static List<Vector3> ToVector3(IList<Data> points)
             {
-                List<Vector3> result = new List<Vector3>();
+                List<Vector3> result = new List<Vector3>(points.Count);
                 foreach (Data data in points)
                     result.Add(data.pos);
                 return result;

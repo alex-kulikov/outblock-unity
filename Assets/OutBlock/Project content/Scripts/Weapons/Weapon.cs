@@ -198,9 +198,10 @@ namespace OutBlock
             nextFire = Time.time + reloadTime;
             reloading = true;
             reloadSound.Play();
-            reservedAmmo -= maxAmmo;
             reservedAmmo += ammo;
-            ammo = maxAmmo;
+            int intermediateAmmo = reservedAmmo > maxAmmo ? maxAmmo : reservedAmmo;
+            reservedAmmo -= intermediateAmmo;
+            ammo = intermediateAmmo;
             onReload?.Invoke();
         }
 

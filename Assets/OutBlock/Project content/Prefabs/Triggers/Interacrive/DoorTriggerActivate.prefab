@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8182817722787772418}
   - component: {fileID: 8182817722787772431}
-  - component: {fileID: 8182817722787772430}
+  - component: {fileID: 715849436193575591}
   m_Layer: 11
   m_Name: DoorTriggerActivate
   m_TagString: Untagged
@@ -46,7 +46,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &8182817722787772430
+--- !u!114 &715849436193575591
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -55,10 +55,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 8182817722787772425}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ae99c25a173b3784f944991c203f78ca, type: 3}
+  m_Script: {fileID: 11500000, guid: ee1878d0a4768b3409ac934f096a53d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  saveMe: 1
   onCollision: 1
   onEnter: 1
   tags:
@@ -67,20 +66,39 @@ MonoBehaviour:
   once: 0
   reloadTime: {x: 1, y: 1}
   sound: {fileID: 8300000, guid: 6c9b7d146060ce9439a9d72ea8c61f80, type: 3}
-  onTrigger:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: set_Active
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
+  sensorMode: 0
+  handIK: {fileID: 0}
+  conditionMode: 0
+  item: 
+  requiredItemCount: 1
+  actuationMode: 0
+  switchMode: 0
+  initState: 0
+  basicActuator:
+    triggers: []
+    onTrigger:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 0}
+          m_MethodName: set_Active
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  switchStates:
+  - triggers: []
+    onTrigger:
+      m_PersistentCalls:
+        m_Calls: []
+  - triggers: []
+    onTrigger:
+      m_PersistentCalls:
+        m_Calls: []
 --- !u!1001 &5972425946104894782
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -88,6 +106,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8182817722787772418}
     m_Modifications:
+    - target: {fileID: -4216859302048453862, guid: be22e6fb81afe724a9eecfccda738e33,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: be22e6fb81afe724a9eecfccda738e33,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -105,6 +128,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: be22e6fb81afe724a9eecfccda738e33,
         type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: be22e6fb81afe724a9eecfccda738e33,
+        type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
@@ -116,16 +144,6 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: be22e6fb81afe724a9eecfccda738e33,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -4216859302048453862, guid: be22e6fb81afe724a9eecfccda738e33,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: -4216859302048453862, guid: be22e6fb81afe724a9eecfccda738e33,
-        type: 3}
-      propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: be22e6fb81afe724a9eecfccda738e33,

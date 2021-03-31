@@ -21,6 +21,7 @@ namespace Denver.Metrics
         private LevelMetricsTreeView tree;
 
         private SerializedProperty display;
+        private SerializedProperty displaySettings;
         private SerializedProperty signalsFile;
         private SerializedProperty pathsFile;
 
@@ -32,6 +33,7 @@ namespace Denver.Metrics
         private void OnEnable()
         {
             display = serializedObject.FindProperty("display");
+            displaySettings = serializedObject.FindProperty("displaySettings");
             signalsFile = serializedObject.FindProperty("signalsFile");
             pathsFile = serializedObject.FindProperty("pathsFile");
 
@@ -53,7 +55,7 @@ namespace Denver.Metrics
         {
             List<LevelMetricsTreeElement> elements = CollectTree();
             tree = new LevelMetricsTreeView(treeViewState, elements);
-            tree.ExpandAll();
+            //tree.ExpandAll();
         }
 
         private List<LevelMetricsTreeElement> CollectTree()
@@ -166,11 +168,15 @@ namespace Denver.Metrics
             if (!scr.Display)
                 return;
 
+            if (!scr.DisplaySettings.ShowText)
+                return;
+
             if (!Selection.Contains(scr.gameObject))
                 return;
 
             GUIStyle style = new GUIStyle();
             style.normal.textColor = Color.black;
+            Bounds testBound = new Bounds(Vector3.zero, Vector3.one * 0.2f);
 
             if (scr.editorSignals.Count > 0)
             {
@@ -185,6 +191,10 @@ namespace Denver.Metrics
 
                         foreach (Signal.Data data in signal.Data)
                         {
+                            testBound.center = data.pos;
+                            if (scr.DisplaySettings.Mode == DisplaySettings.Modes.ViewCheck && !GeometryUtility.TestPlanesAABB(scr.Planes, testBound))
+                                continue;
+
                             Vector3 pos = data.pos + Camera.current.transform.right * signal.gizmoSize * 0.5f;
 
                             if (data.treeElement.IsVisible())
@@ -206,6 +216,10 @@ namespace Denver.Metrics
 
                     for (int i = 0; i < path.Data.Count; i++)
                     {
+                        testBound.center = path.Data[i].pos;
+                        if (!GeometryUtility.TestPlanesAABB(scr.Planes, testBound))
+                            continue;
+
                         Vector3 pos = path.Data[i].pos + Camera.current.transform.right * 0.2f;
                         if (i == 0)
                             Handles.Label(pos, string.Format("{0}: {1}", path.name, Utils.FloatToTime(path.Data[i].time)), style);
@@ -242,6 +256,8 @@ namespace Denver.Metrics
             EditorGUILayout.Space();
 
             EditorGUILayout.PropertyField(display);
+            if (display.boolValue)
+                EditorGUILayout.PropertyField(displaySettings, true);
             serializedObject.ApplyModifiedProperties();
 
             if (display.boolValue)
@@ -259,11 +275,11 @@ namespace Denver.Metrics
                     tree.OnGUI(EditorGUILayout.GetControlRect(false, tree.totalHeight));
 
                 EditorGUILayout.EndVertical();
-            }
 
-            EditorGUI.indentLevel--;
-            EditorGUILayout.HelpBox("Double click to focus on the object", MessageType.Info);
-            EditorGUI.indentLevel++;
+                EditorGUI.indentLevel--;
+                EditorGUILayout.HelpBox("Double click to focus on the object", MessageType.Info);
+                EditorGUI.indentLevel++;
+            }
 
             EditorGUILayout.Space();
 

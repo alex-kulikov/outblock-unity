@@ -67,6 +67,15 @@ namespace OutBlock
         /// </summary>
         public bool crouchSwitch { get; set; }
 
+        /// <summary>
+        /// Camera horizontal angle.
+        /// </summary>
+        public float AimX { get; set; }
+        /// <summary>
+        /// Camera vertical angle.
+        /// </summary>
+        public float AimY { get; set; }
+
         private const float sensitivityCompensation = 0.25f;
         private const float aimCheckTime = 0.1f;
 
@@ -77,8 +86,6 @@ namespace OutBlock
         private float startFov;
         private float targetFov;
         private float camYPos;
-        private float aimX;
-        private float aimY;
         private bool aimingAtEnemy;
         private Cinemachine3rdPersonFollow cinemachineFollow;
 
@@ -92,7 +99,7 @@ namespace OutBlock
                 camYPos = 0;
             }
 
-            aimX = transform.eulerAngles.y;
+            AimX = transform.eulerAngles.y;
         }
 
         private void OnEnable()
@@ -180,9 +187,9 @@ namespace OutBlock
             #region CameraLook
             look = Vector2.Lerp(look, GetPlayerAim(), Time.deltaTime * 35f);
             float sens = aimingAtEnemy ? Mathf.Clamp(1 - Settings.AimAssistCoefficient, 0.05f, 1) : 1 * (aiming ? aimingSensitivityMultiplier : 1);
-            aimX += look.x * sens;
-            aimY += look.y * sens;
-            aimY = Utils.ClampAngle(aimY, lookAngleRange.x, lookAngleRange.y);
+            AimX += look.x * sens;
+            AimY += look.y * sens;
+            AimY = Utils.ClampAngle(AimY, lookAngleRange.x, lookAngleRange.y);
 
             Vector3 newCamFollowPos = Vector3.zero;
             camYPos = Mathf.Lerp(camYPos, player.Character.Crouching ? 1 : 0, Time.deltaTime * 7);
@@ -191,7 +198,7 @@ namespace OutBlock
                 newCamFollowPos.y += 0.25f;
 
             camFollowTarget.localPosition = newCamFollowPos;
-            camFollowTarget.eulerAngles = new Vector3(aimY, aimX, 0);
+            camFollowTarget.eulerAngles = new Vector3(AimY, AimX, 0);
             #endregion
 
             if (!busy)

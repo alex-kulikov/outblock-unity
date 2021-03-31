@@ -578,7 +578,19 @@ PlayerSettings:
   webGLLinkerTarget: 1
   webGLThreadsSupport: 0
   webGLWasmStreaming: 0
-  scriptingDefineSymbols: {}
+  scriptingDefineSymbols:
+    1: PROBUILDER_EXPERIMENTAL_FEATURES
+    4: PROBUILDER_EXPERIMENTAL_FEATURES
+    7: PROBUILDER_EXPERIMENTAL_FEATURES
+    13: PROBUILDER_EXPERIMENTAL_FEATURES
+    14: PROBUILDER_EXPERIMENTAL_FEATURES
+    19: PROBUILDER_EXPERIMENTAL_FEATURES
+    21: PROBUILDER_EXPERIMENTAL_FEATURES
+    25: PROBUILDER_EXPERIMENTAL_FEATURES
+    27: PROBUILDER_EXPERIMENTAL_FEATURES
+    28: PROBUILDER_EXPERIMENTAL_FEATURES
+    29: PROBUILDER_EXPERIMENTAL_FEATURES
+    30: PROBUILDER_EXPERIMENTAL_FEATURES
   platformArchitecture: {}
   scriptingBackend:
     Standalone: 1
@@ -589,6 +601,7 @@ PlayerSettings:
   additionalIl2CppArgs: 
   scriptingRuntimeVersion: 1
   gcIncremental: 0
+  assemblyVersionValidation: 1
   gcWBarrierValidation: 0
   apiCompatibilityLevelPerPlatform:
     Standalone: 3
@@ -639,6 +652,7 @@ PlayerSettings:
   XboxOneCapability: []
   XboxOneGameRating: {}
   XboxOneIsContentPackage: 0
+  XboxOneEnhancedXboxCompatibilityMode: 0
   XboxOneEnableGPUVariability: 1
   XboxOneSockets: {}
   XboxOneSplashScreen: {fileID: 0}

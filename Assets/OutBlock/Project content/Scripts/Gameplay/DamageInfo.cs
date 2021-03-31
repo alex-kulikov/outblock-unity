@@ -50,7 +50,7 @@ namespace OutBlock
         /// <summary>
         /// Team of the source of the damage.
         /// </summary>
-        public Teams team { get; private set; }
+        public Teams team { get; set; }
 
         public DamageInfo(float damage, Vector3 source, Vector3 hitPoint)
         {

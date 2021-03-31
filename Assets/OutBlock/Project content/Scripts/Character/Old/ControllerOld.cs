@@ -123,6 +123,7 @@ namespace OutBlock
         private bool inputRunning;
         private bool crouchInput;
         private bool standCheck;
+        private bool jumpCheck;
         private float startHeight;
         private float jumpTime;
         private RaycastHit groundHit;
@@ -174,6 +175,8 @@ namespace OutBlock
             {
                 isGrounded = false;
             }
+
+            HeadCheck();
         }
 
         private void Update()
@@ -292,6 +295,22 @@ namespace OutBlock
             body.AddForce(dir * pushPower);
         }
 
+        private void HeadCheck()
+        {
+            if (crouching)
+            {
+                Ray ray = new Ray(transform.position, Vector3.up);
+                standCheck = Physics.SphereCast(ray, 0.2f, startHeight - 0.2f, groundMask);
+                jumpCheck = false;
+            }
+            else
+            {
+                standCheck = false;
+                Ray ray = new Ray(transform.position + Vector3.up * (startHeight - 0.2f), Vector3.up);
+                jumpCheck = !Physics.SphereCast(ray, 0.2f, 0.5f, groundMask);
+            }
+        }
+
         private void CrouchCheck()
         {
             if (crouchInput == Crouching)
@@ -334,6 +353,9 @@ namespace OutBlock
 
         public void Jump()
         {
+            if (!jumpCheck)
+                return;
+
             if (jumpReload <= 0 && isGrounded && jumpTime <= 0)
             {
                 jumpTime = 1;
